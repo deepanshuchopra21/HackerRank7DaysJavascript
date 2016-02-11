@@ -1,0 +1,25 @@
+function processData(myArray) {
+myArray.sort(function(a, b){return b-a});
+    if(myArray.length>0){
+    var max=myArray[0];
+        for(var i=0;i<myArray.length;i++){
+            if(max!==myArray[i]){
+                console.log(myArray[i]);
+                return;
+            }
+        }
+    }
+}
+
+
+// tail starts here
+process.stdin.resume();
+process.stdin.setEncoding("ascii");
+_input = "";
+process.stdin.on("data", function (input) {
+    _input += input;
+});
+
+process.stdin.on("end", function () {
+   processData(_input.split('\n')[1].split(' ').map(Number));
+});
