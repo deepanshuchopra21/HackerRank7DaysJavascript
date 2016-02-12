@@ -1,0 +1,2 @@
+// write the correct arrow function here
+var my_function = arr => arr.map( arr_val => arr_val%2 ? arr_val+1 : arr_val-1)

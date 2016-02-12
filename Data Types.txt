@@ -1,0 +1,3 @@
+var my_num=29;
+var my_bool=true;
+var my_str="test";
