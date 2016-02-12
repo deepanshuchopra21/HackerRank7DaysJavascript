@@ -1,0 +1,8 @@
+for(var i of my_array){
+    if(i===reverse(i))
+    console.log(i);
+}
+
+function reverse(s){
+    return s.split("").reverse().join("");
+}
