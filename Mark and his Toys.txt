@@ -1,0 +1,36 @@
+function processData(input) {
+    //Enter your code here
+    var inputArr=input.split("\n");
+    var dollarValues=inputArr[0].split(" ");
+    var totalDollar=dollarValues[1];
+    
+    var toyPrice=inputArr[1].split(" ").map(function(x){return parseInt(x)});
+    toyPrice.sort(sortNumber);
+    var sum=0;
+    var count=0;
+    for(var i=0;i<toyPrice.length;i++){
+          if(sum+toyPrice[i] > totalDollar){
+            break;
+        }        
+        sum=sum+toyPrice[i];        
+        count++;
+    }
+    console.log(count);
+} 
+
+
+function sortNumber(a,b) {
+    return a - b;
+}
+
+
+process.stdin.resume();
+process.stdin.setEncoding("ascii");
+_input = "";
+process.stdin.on("data", function (input) {
+    _input += input;
+});
+
+process.stdin.on("end", function () {
+   processData(_input);
+});

@@ -1,0 +1,106 @@
+function processData(input) {
+    //Enter your code here
+    var inputArr=input.split(/\r?\n/);
+    var x=inputArr[0];
+    var y=inputArr[1];
+    
+    var arrayList = new Array(y);
+    
+    for(var xList=0;xList<x;xList++){
+      arrayList[xList] = inputArr[xList+2].split(" ");  
+    }
+    
+    var count=0;
+        for(var xloop =0;xloop<x ;xloop++){
+         for(var yloop =0;yloop<y ;yloop++){
+            arrayList= populateConnectedNodes(arrayList,xloop,yloop,x,y);
+             var tempcount=calculateCount(arrayList,x,y);
+             if(tempcount>count){
+                 count=tempcount;
+             }
+          
+        }       
+    }
+   
+    console.log(count);
+    
+    
+  
+} 
+
+
+function calculateCount(arrayList,x,y){
+    var count=0;
+     for(var xloop =0;xloop<x ;xloop++){
+        for(var yloop =0;yloop<y ;yloop++){
+         if(arrayList[xloop][yloop]==='2'){
+            arrayList[xloop][yloop]='1';
+             count++;
+         }
+        }       
+        
+    }
+    return count;
+}
+
+function populateConnectedNodes(arrayList,xcurr,ycurr,x,y){
+      if(arrayList[xcurr][ycurr]!=='0'){
+        
+        arrayList[xcurr][ycurr]='2';
+        
+        if(xcurr+1 <x && arrayList[xcurr+1][ycurr]==='1' ){
+            arrayList[xcurr+1][ycurr]='2';
+          arrayList=  populateConnectedNodes(arrayList,xcurr+1,ycurr,x,y);
+            
+            
+        }
+        if(xcurr+1 <x && ycurr+1 <y && arrayList[xcurr+1][ycurr+1]==='1' ){
+            arrayList[xcurr+1][ycurr+1]='2';
+          arrayList=  populateConnectedNodes(arrayList,xcurr+1,ycurr+1,x,y);
+            
+        }
+        if( ycurr+1 <y && arrayList[xcurr][ycurr+1]==='1' ){
+            arrayList[xcurr][ycurr+1]='2';
+           arrayList= populateConnectedNodes(arrayList,xcurr,ycurr+1,x,y);
+        }
+        if(xcurr-1 >=0 && arrayList[xcurr-1][ycurr]==='1' ){
+            arrayList[xcurr-1][ycurr]='2';
+          arrayList=  populateConnectedNodes(arrayList,xcurr-1,ycurr,x,y);
+            
+        }
+        if(ycurr-1 >=0  && xcurr-1 >=0 && arrayList[xcurr-1][ycurr-1]==='1'  ){
+            arrayList[xcurr-1][ycurr-1]='2';
+         arrayList=   populateConnectedNodes(arrayList,xcurr-1,ycurr-1,x,y);
+            
+        }
+        if(ycurr-1 >=0  && arrayList[xcurr][ycurr-1]==='1' ){
+            arrayList[xcurr][ycurr-1]='2';
+          arrayList=  populateConnectedNodes(arrayList,xcurr,ycurr-1,x,y);
+            
+        }
+        
+        if(xcurr-1 >=0 && ycurr+1 <y && arrayList[xcurr-1][ycurr+1]==='1' ){
+            arrayList[xcurr-1][ycurr+1]='2';
+          arrayList=  populateConnectedNodes(arrayList,xcurr-1,ycurr+1,x,y);
+            
+        }
+        
+        if( ycurr-1 >=0  && xcurr+1 <x && arrayList[xcurr+1][ycurr-1]==='1' ){
+            arrayList[xcurr+1][ycurr-1]='2';
+          arrayList=  populateConnectedNodes(arrayList,xcurr+1,ycurr-1,x,y);
+            
+        }        
+    }
+    return arrayList;
+}
+
+process.stdin.resume();
+process.stdin.setEncoding("ascii");
+_input = "";
+process.stdin.on("data", function (input) {
+    _input += input;
+});
+
+process.stdin.on("end", function () {
+   processData(_input);
+});

@@ -1,0 +1,61 @@
+function processData(input) {
+    //Enter your code here
+    
+    var list=input.split("\n");
+    var loop=list[0];
+    
+    for(var i=0;i<loop;i++){
+//    console.log(loop[i+1]);
+    var length=list[i+1].length;
+    var mid=Math.ceil( length/2);
+    var charArray=list[i+1].split('');
+        var count=0;
+        if(length%2==0){
+            
+            for(var j=0,k=length-1;j<mid && k>=mid;j++,k--){
+                if(charArray[j] > charArray[k]){
+                    while(charArray[j] > charArray[k]){
+                        charArray[j]=prevChar(charArray[j]);
+                        count++;
+                    }
+                }else{
+                    while(charArray[j] < charArray[k]){
+                        charArray[k]=prevChar(charArray[k]);
+                        count++;
+                    }
+                }
+            }
+        }else{
+            for(var j=0,k=length-1;j<mid-1 && k>=mid;j++,k--){
+                if(charArray[j] > charArray[k]){
+                    while(charArray[j] > charArray[k]){
+                        charArray[j]=prevChar(charArray[j]);
+                        count++;
+                    }
+                }else{
+                     while(charArray[j] < charArray[k]){
+                        charArray[k]=prevChar(charArray[k]);
+                        count++;
+                    }
+                }
+            }
+        }
+      console.log(count);
+    }
+    
+} 
+
+function prevChar(c) {
+    return String.fromCharCode(c.charCodeAt(0) - 1);
+}
+
+process.stdin.resume();
+process.stdin.setEncoding("ascii");
+_input = "";
+process.stdin.on("data", function (input) {
+    _input += input;
+});
+
+process.stdin.on("end", function () {
+   processData(_input);
+});
