@@ -1,0 +1,27 @@
+function processData(input) {
+    //Enter your code here
+    console.log("        *");
+    
+    for(var i=0;i<9;i++){
+        var print="";
+        for(var k=8-i;k>0;k--){
+            print=print + " ";
+        }
+        for(var j=0;j<(i*2+1);j++){
+            print=print+"0";
+        }
+        
+        console.log(print);
+    }
+} 
+
+process.stdin.resume();
+process.stdin.setEncoding("ascii");
+_input = "";
+process.stdin.on("data", function (input) {
+    _input += input;
+});
+
+process.stdin.on("end", function () {
+   processData(_input);
+});

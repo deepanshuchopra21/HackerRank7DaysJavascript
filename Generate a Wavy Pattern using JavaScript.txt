@@ -1,0 +1,29 @@
+function processData(input) {
+    //Enter your code here
+    const backSlash = String.fromCharCode(9585); 
+    const forwardSlash = String.fromCharCode(9586);
+
+    for(var i=0;i<14;i++){
+        var pattern="";
+        for(var j=0;j<14;j++){
+            if(j%2==0)
+                {
+                    pattern=pattern+backSlash;
+                }else{
+                    pattern=pattern+forwardSlash;
+                }
+        }
+        console.log(pattern);
+    }
+} 
+
+process.stdin.resume();
+process.stdin.setEncoding("ascii");
+_input = "";
+process.stdin.on("data", function (input) {
+    _input += input;
+});
+
+process.stdin.on("end", function () {
+   processData(_input);
+});
